@@ -10,6 +10,8 @@ namespace Employees.Domain
     {
         static Guid UUID = System.Guid.NewGuid();
 
+        public virtual DeptEmpId Id { get; set; }
+
         private Department department;
 
         public virtual Department Department

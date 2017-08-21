@@ -19,17 +19,6 @@ namespace Employees
             using (ISession session = NHibernateHelper.OpenSession())
                 using (ITransaction transaction = session.BeginTransaction())
             	{
-                    //var departments = session.CreateCriteria(typeof(Department)).List<Department>();
-                    //foreach (var department in departments)
-                    //{
-                    //    Console.WriteLine("NO: " + department.DeptNo);
-                    //}
-                    //var deptEmps = session.CreateCriteria(typeof(DeptEmp)).List<DeptEmp>();
-                    //foreach (var deptEmp in deptEmps)
-                    //{
-                    //    Console.WriteLine("Dep: " + deptEmp.Department.DeptName + " Emp: " + deptEmp.Employee.EmpNo);
-                    //}
-                    //var fromDb = session.Get<Employee>(499999);
                     var criteria = session.CreateCriteria(typeof(Employee), "employee");
                     criteria.CreateAlias("employee.DeptEmps", "deptEmps");
                     criteria.CreateAlias("deptEmps.Department", "department");

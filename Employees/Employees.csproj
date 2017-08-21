@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Domain\Department.cs" />
     <Compile Include="Domain\DeptEmp.cs" />
+    <Compile Include="Domain\DeptEmpId.cs" />
     <Compile Include="Domain\Employee.cs" />
     <Compile Include="Repositories\NHibernateHelper.cs" />
     <Compile Include="Program.cs" />

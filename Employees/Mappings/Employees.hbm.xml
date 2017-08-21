@@ -10,7 +10,7 @@
     <property name="BirthDate" column="birth_date" />
     <property name="HireDate" column="hire_date" />
     <set name="DeptEmps" table="dept_emp" fetch="join">
-      <key foreign-key="emp_no" />
+      <key column="emp_no" />
       <one-to-many class="DeptEmp" />
     </set>
   </class>
@@ -21,16 +21,18 @@
     </id>
     <property name="DeptName" column="dept_name" />
     <set name="DeptEmps" table="dept_emp" fetch="join">
-      <key foreign-key="dept_name" />
+      <key column="dept_name" />
       <one-to-many class="DeptEmp" />
     </set>
   </class>
 
   <!-- DeptEmp -->
   <class name="DeptEmp" table="dept_emp">
-    <composite-id>
-      <key-many-to-one name="Employee" class="Employee" lazy="proxy" column="emp_no" />
-      <key-many-to-one name="Department" class="Department" lazy="proxy" column="dept_no" />
+    <composite-id class="DeptEmpId" name="Id">
+      <key-property name="EmpNo" column="emp_no" />
+      <key-property name="DeptNo" column="dept_no" />
     </composite-id>
+    <many-to-one name="Employee" class="Employee" lazy="proxy" column="emp_no" />
+    <many-to-one name="Department" class="Department" lazy="proxy" column="dept_no" />
   </class>
 </hibernate-mapping>
