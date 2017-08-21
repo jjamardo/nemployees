@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Employees" namespace="Employees.Domain">
+  <!-- Employee -->
+  <class name="Employee" table="employees">
+    <id name="EmpNo" column="emp_no">
+    </id>
+    <property name="FirstName" column="first_name" />
+    <property name="LastName" column="last_name" />
+    <property name="Gender" column="gender" />
+    <property name="BirthDate" column="birth_date" />
+    <property name="HireDate" column="hire_date" />
+    <set name="DeptEmps" table="dept_emp" fetch="join">
+      <key foreign-key="emp_no" />
+      <one-to-many class="DeptEmp" />
+    </set>
+  </class>
+
+  <!-- Department -->
+  <class name="Department" table="departments">
+    <id name="DeptNo" column="dept_no">
+    </id>
+    <property name="DeptName" column="dept_name" />
+    <set name="DeptEmps" table="dept_emp" fetch="join">
+      <key foreign-key="dept_name" />
+      <one-to-many class="DeptEmp" />
+    </set>
+  </class>
+
+  <!-- DeptEmp -->
+  <class name="DeptEmp" table="dept_emp">
+    <composite-id>
+      <key-many-to-one name="Employee" class="Employee" lazy="proxy" column="emp_no" />
+      <key-many-to-one name="Department" class="Department" lazy="proxy" column="dept_no" />
+    </composite-id>
+  </class>
+</hibernate-mapping>
