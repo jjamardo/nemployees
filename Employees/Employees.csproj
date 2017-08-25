@@ -52,7 +52,13 @@
     <Compile Include="Domain\Department.cs" />
     <Compile Include="Domain\DeptEmp.cs" />
     <Compile Include="Domain\DeptEmpId.cs" />
+    <Compile Include="Domain\DeptManager.cs" />
+    <Compile Include="Domain\DeptManagerId.cs" />
     <Compile Include="Domain\Employee.cs" />
+    <Compile Include="Domain\Salary.cs" />
+    <Compile Include="Domain\SalaryId.cs" />
+    <Compile Include="Domain\Title.cs" />
+    <Compile Include="Domain\TitleId.cs" />
     <Compile Include="Repositories\NHibernateHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,6 +77,9 @@
     <EmbeddedResource Include="Mappings\Employees.hbm.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Queries\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace Employees.Domain
 {
-    public class DeptEmpId
+    public class SalaryId
     {
-        public virtual int EmpNo { get; set; }
-        public virtual string DeptNo { get; set; }
+        public int EmpNo { get; set; }
+        public DateTime FromDate { get; set; }
 
         public override int GetHashCode()
         {
-            return (EmpNo + "|" + DeptNo).GetHashCode();
+            return (EmpNo + "|" + FromDate).GetHashCode();
         }
 
         public override bool Equals(object obj)
         {
-            DeptEmpId other = (DeptEmpId)obj;
-            return other.DeptNo == DeptNo && other.EmpNo == EmpNo;
+            SalaryId other = (SalaryId)obj;
+            return EmpNo == other.EmpNo && FromDate == other.FromDate;
         }
     }
 }

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Employees.Domain
 {
-    public class DeptEmpId
+    public class DeptManagerId
     {
-        public virtual int EmpNo { get; set; }
-        public virtual string DeptNo { get; set; }
+        public int EmpNo { get; set; }
+        public string DeptNo { get; set; }
 
         public override int GetHashCode()
         {
@@ -18,8 +18,8 @@ namespace Employees.Domain
 
         public override bool Equals(object obj)
         {
-            DeptEmpId other = (DeptEmpId)obj;
-            return other.DeptNo == DeptNo && other.EmpNo == EmpNo;
+            DeptManagerId other = (DeptManagerId)obj;
+            return EmpNo == other.EmpNo && DeptNo == other.DeptNo;
         }
     }
 }
