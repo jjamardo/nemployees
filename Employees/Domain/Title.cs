@@ -8,8 +8,8 @@ namespace Employees.Domain
 {
     public class Title
     {
-        public TitleId TitleId { get; set; }
-        public Employee Employee { get; set; }
-        public DateTime ToDate { get; set; }
+        public virtual TitleId TitleId { get; set; }
+        public virtual Employee Employee { get; set; }
+        public virtual DateTime ToDate { get; set; }
     }
 }

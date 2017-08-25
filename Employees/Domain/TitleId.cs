@@ -8,9 +8,9 @@ namespace Employees.Domain
 {
     public class TitleId
     {
-        public int EmpNo { get; set; }
-        public string Title { get; set; }
-        public DateTime FromDate { get; set; }
+        public virtual int EmpNo { get; set; }
+        public virtual string Title { get; set; }
+        public virtual DateTime FromDate { get; set; }
 
         public override int GetHashCode()
         {

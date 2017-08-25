@@ -14,6 +14,9 @@ namespace Employees.Domain
         public virtual string Gender { get; set; }
         public virtual DateTime BirthDate { get; set; }
         public virtual DateTime HireDate { get; set; }
-        public virtual List<DeptEmp> DeptEmps { get; set; }
+        public virtual ISet<DeptEmp> DeptEmps { get; set; }
+        public virtual ISet<DeptManager> DeptManagers { get; set; }
+        public virtual ISet<Salary> Salaries { get; set; }
+        public virtual ISet<Title> Titles { get; set; }
     }
 }

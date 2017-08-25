@@ -8,8 +8,8 @@ namespace Employees.Domain
 {
     public class SalaryId
     {
-        public int EmpNo { get; set; }
-        public DateTime FromDate { get; set; }
+        public virtual int EmpNo { get; set; }
+        public virtual DateTime FromDate { get; set; }
 
         public override int GetHashCode()
         {

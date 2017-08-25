@@ -2,37 +2,87 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Employees" namespace="Employees.Domain">
   <!-- Employee -->
   <class name="Employee" table="employees">
-    <id name="EmpNo" column="emp_no">
+    <id name="EmpNo" type="int" column="emp_no">
     </id>
-    <property name="FirstName" column="first_name" />
-    <property name="LastName" column="last_name" />
-    <property name="Gender" column="gender" />
-    <property name="BirthDate" column="birth_date" />
-    <property name="HireDate" column="hire_date" />
+    <property name="FirstName" type="string" column="first_name" />
+    <property name="LastName" type="string" column="last_name" />
+    <property name="Gender" type="string" column="gender" />
+    <property name="BirthDate" type="date" column="birth_date" />
+    <property name="HireDate" type="date" column="hire_date" />
     <set name="DeptEmps" table="dept_emp" fetch="join">
       <key column="emp_no" />
       <one-to-many class="DeptEmp" />
+    </set>
+    <set name="Salaries" table="salaries" fetch="join">
+      <key column="emp_no" />
+      <one-to-many class="Salary" />
+    </set>
+    <set name="Titles" table="titles" fetch="join">
+      <key column="emp_no" />
+      <one-to-many class="Title" />
+    </set>
+    <set name="DeptManagers" table="dept_manager" fetch="join">
+      <key column="emp_no" />
+      <one-to-many class="DeptManager" />
     </set>
   </class>
 
   <!-- Department -->
   <class name="Department" table="departments">
-    <id name="DeptNo" column="dept_no">
+    <id name="DeptNo" type="string" column="dept_no">
     </id>
-    <property name="DeptName" column="dept_name" />
+    <property name="DeptName" type="string" column="dept_name" />
     <set name="DeptEmps" table="dept_emp" fetch="join">
-      <key column="dept_name" />
+      <key column="dept_no" />
       <one-to-many class="DeptEmp" />
+    </set>
+    <set name="DeptManagers" table="dept_emp" fetch="join">
+      <key column="dept_no" />
+      <one-to-many class="DeptManager" />
     </set>
   </class>
 
   <!-- DeptEmp -->
   <class name="DeptEmp" table="dept_emp">
-    <composite-id class="DeptEmpId" name="Id">
-      <key-property name="EmpNo" column="emp_no" />
-      <key-property name="DeptNo" column="dept_no" />
+    <composite-id class="DeptEmpId" name="DeptEmpId">
+      <key-property name="EmpNo" type="int" column="emp_no" />
+      <key-property name="DeptNo" type="string" column="dept_no" />
     </composite-id>
-    <many-to-one name="Employee" class="Employee" lazy="proxy" column="emp_no" />
-    <many-to-one name="Department" class="Department" lazy="proxy" column="dept_no" />
+    <many-to-one name="Employee" class="Employee" lazy="proxy" column="emp_no" insert="false" update="false" />
+    <many-to-one name="Department" class="Department" lazy="proxy" column="dept_no" insert="false" update="false" />
+  </class>
+
+  <!-- Salaries -->
+  <class name="Salary" table="salaries">
+    <composite-id class="SalaryId" name="SalaryId">
+      <key-property name="EmpNo" type="int" column="emp_no" />
+      <key-property name="FromDate" type="date" column="from_date" />
+    </composite-id>
+    <many-to-one name="Employee" class="Employee" lazy="proxy" column="emp_no" insert="false" update="false" />
+    <property name="Zalary" type="int" column="salary" />
+    <property name="ToDate" type="date" column="to_date" />
+  </class>
+
+  <!-- Titles -->
+  <class name="Title" table="titles">
+    <composite-id  class="TitleId" name="TitleId">
+      <key-property name="EmpNo" type="int" column="emp_no" />
+      <key-property name="Title" type="string" column="title" />
+      <key-property name="FromDate" type="date" column="from_date" />
+    </composite-id>
+    <many-to-one name="Employee" class="Employee" lazy="proxy" column="emp_no" insert="false" update="false" />
+    <property name="ToDate" type="date" column="to_date" />
+  </class>
+
+  <!-- DeptManager -->
+  <class name="DeptManager" table="dept_manager">
+    <composite-id class="DeptManagerId" name="DeptManagerId">
+      <key-property name="EmpNo" type="int" column="emp_no" />
+      <key-property name="DeptNo" type="string" column="dept_no" />
+    </composite-id>
+    <many-to-one name="Employee" class="Employee" lazy="proxy" column="emp_no" insert="false" update="false" />
+    <many-to-one name="Department" class="Department" lazy="proxy" column="dept_no" insert="false" update="false" />
+    <property name="FromDate" type="date" column="from_date" />
+    <property name="ToDate" type="date" column="to_date" />
   </class>
 </hibernate-mapping>

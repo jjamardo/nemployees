@@ -8,9 +8,9 @@ namespace Employees.Domain
 {
     public class Salary
     {
-        public SalaryId SalaryId { get; set; }
-        public Employee Employee { get; set; }
-        public int Zalary { get; set; }
-        public DateTime ToDate { get; set; }
+        public virtual SalaryId SalaryId { get; set; }
+        public virtual Employee Employee { get; set; }
+        public virtual int Zalary { get; set; }
+        public virtual DateTime ToDate { get; set; }
     }
 }

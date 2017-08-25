@@ -8,7 +8,7 @@ namespace Employees.Domain
 {
     public class DeptEmp
     {
-        public virtual DeptEmpId Id { get; set; }
+        public virtual DeptEmpId DeptEmpId { get; set; }
         public virtual Department Department { get; set; }
         public virtual Employee Employee { get; set; }
     }

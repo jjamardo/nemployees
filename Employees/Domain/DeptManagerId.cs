@@ -8,8 +8,8 @@ namespace Employees.Domain
 {
     public class DeptManagerId
     {
-        public int EmpNo { get; set; }
-        public string DeptNo { get; set; }
+        public virtual int EmpNo { get; set; }
+        public virtual string DeptNo { get; set; }
 
         public override int GetHashCode()
         {

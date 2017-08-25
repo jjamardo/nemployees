@@ -10,6 +10,7 @@ namespace Employees.Domain
     {
         public virtual string DeptNo { get; set;}
         public virtual string DeptName { get; set; }
-        public virtual List<DeptEmp> DeptEmps { get; set; }
+        public virtual ISet<DeptEmp> DeptEmps { get; set; }
+        public virtual ISet<DeptManager> DeptManagers { get; set; }
     }
 }
