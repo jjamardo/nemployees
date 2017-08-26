@@ -29,7 +29,6 @@ namespace Employees.Queries
             foreach (object[] result in results)
             {
                 int salary = (int)result[0];
-                int empNo = (int)result[1];
                 string firstName = (string)result[2];
                 string lastName = (string)result[3];
                 Console.WriteLine("Employee: " + firstName + " " + lastName + " Salary: " + salary);
