@@ -59,6 +59,11 @@
     <Compile Include="Domain\SalaryId.cs" />
     <Compile Include="Domain\Title.cs" />
     <Compile Include="Domain\TitleId.cs" />
+    <Compile Include="Queries\EngineersResearchersQuery.cs" />
+    <Compile Include="Queries\INHQueryable.cs" />
+    <Compile Include="Queries\ManagersQuery.cs" />
+    <Compile Include="Queries\MaxSalaryPerEmployeeQuery.cs" />
+    <Compile Include="Queries\QueryUtils.cs" />
     <Compile Include="Repositories\NHibernateHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,9 +83,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Queries\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
