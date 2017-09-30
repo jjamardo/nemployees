@@ -11,12 +11,12 @@ namespace Employees.Queries
 {
     class ManagersQuery : INHQueryable
     {
-	    public void Query(ISession session)
+	    public void Query(ISession session, int limit)
         {
 		    /* Prints all active managers (limited) */
 		    var c = session.CreateCriteria(typeof(DeptManager));
 		    c.Add(Restrictions.Eq("ToDate", QueryUtils.ToThePresent()));
-            c.SetMaxResults(1);
+            c.SetMaxResults(limit);
 		    var results = c.List();
             foreach (DeptManager manager in results)
             {

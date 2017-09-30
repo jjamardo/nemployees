@@ -9,6 +9,6 @@ namespace Employees.Queries
 {
     interface INHQueryable
     {
-        void Query(ISession session);
+        void Query(ISession session, int limit);
     }
 }

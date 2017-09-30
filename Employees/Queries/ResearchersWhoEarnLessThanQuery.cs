@@ -11,7 +11,7 @@ namespace Employees.Queries
 {
     class ResearchersWhoEarnLessThanQuery : INHQueryable
     {
-        public void Query(ISession session)
+        public void Query(ISession session, int limit)
         {
             var c = session.CreateCriteria(typeof(Salary), "s");
             c.CreateAlias("s.Employee", "e");
@@ -27,7 +27,7 @@ namespace Employees.Queries
             c.Add(Restrictions.Le("Zalary", 70000));
             c.Add(Restrictions.Eq("dp.DeptName", "Research"));
             c.SetProjection(proList);
-            //c.SetMaxResults(2000);
+            //c.SetMaxResults(limit);
             var results = c.List();
             foreach (object[] result in results)
             {

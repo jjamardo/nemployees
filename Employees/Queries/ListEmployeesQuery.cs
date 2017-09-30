@@ -10,10 +10,10 @@ namespace Employees.Queries
 {
     class ListEmployeesQuery : INHQueryable
     {
-        public void Query(ISession session)
+        public void Query(ISession session, int limit)
         {
             var c = session.CreateCriteria(typeof(Employee));
-            c.SetMaxResults(100);
+            c.SetMaxResults(limit);
             var results = c.List();
             for (int i = 0; i < results.Count; i++)
             {

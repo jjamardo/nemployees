@@ -11,7 +11,7 @@ namespace Employees.Queries
 {
     class EngineersHiredBefore1990 : INHQueryable
     {
-        public void Query(ISession session)
+        public void Query(ISession session, int limit)
         {
             /** Prints all employees that are from Research department and are Engineers */
             /* Using projections instead of create Employee objects */
@@ -28,7 +28,7 @@ namespace Employees.Queries
             proList.Add(Projections.Property("department.DeptName"));
             c.Add(Restrictions.Le("employee.HireDate", QueryUtils.DateParse("1990-01-01")));
             c.SetProjection(proList);
-            c.SetMaxResults(25000);
+            c.SetMaxResults(limit);
             var results = c.List();
             foreach (object[] result in results)
             {
