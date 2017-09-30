@@ -16,5 +16,12 @@ namespace Employees.Queries
             var culture = CultureInfo.InvariantCulture;
             return DateTime.ParseExact(present, format, culture);
         }
+
+        public static DateTime DateParse(string date)
+        {
+            var format = "yyyy-mm-dd";
+            var culture = CultureInfo.InvariantCulture;
+            return DateTime.ParseExact(date, format, culture);
+        }
     }
 }

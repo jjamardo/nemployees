@@ -17,14 +17,35 @@ namespace Employees
     {
         static void Main(string[] args)
         {
-            var query1 = new ManagersQuery();
-            TranasactionalQuery(query1);
+            //var query1 = new ManagersQuery();
+            //TranasactionalQuery(query1);
 
-            //var query2 = new EngineersResearchersQuery();
+            //var query2 = new EngineersHiredBefore1990();
             //TranasactionalQuery(query2);
 
-            //var query3 = new MaxSalaryPerEmployeeQuery();
+            //var query3 = new ResearchersWhoEarnLessThanQuery();
             //TranasactionalQuery(query3);
+
+            using (ISession session = NHibernateHelper.OpenSession())
+            {
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    var c = session.CreateCriteria(typeof(Employee));
+                    c.SetMaxResults(3);
+                    var results = c.List();
+                    for (int i = 0; i < results.Count; i++)
+                    {
+                        Employee employee = (Employee)results[i];
+                        Console.WriteLine("Employee: " + employee.FirstName + " " + employee.LastName);
+                    }
+                    //foreach (Employee employee in results)
+                    //{
+                    //    Console.WriteLine("Employee: " + employee.FirstName + " " + employee.LastName);
+                    //}
+                }
+            }
+            //var query4 = new ListEmployeesQuery();
+            //TranasactionalQuery(query4);
         }
 
         private static void TranasactionalQuery(INHQueryable query)

@@ -9,12 +9,14 @@ using System.Threading.Tasks;
 
 namespace Employees.Queries
 {
-    class MaxSalaryPerEmployeeQuery : INHQueryable
+    class ResearchersWhoEarnLessThanQuery : INHQueryable
     {
         public void Query(ISession session)
         {
             var c = session.CreateCriteria(typeof(Salary), "s");
             c.CreateAlias("s.Employee", "e");
+		    c.CreateAlias("e.DeptEmps", "de");
+		    c.CreateAlias("de.Department", "dp");
             var co = Restrictions.Conjunction().Add(Restrictions.IsNotNull("SalaryId.EmpNo"));
             c.Add(co);
             ProjectionList proList = Projections.ProjectionList();
@@ -22,9 +24,10 @@ namespace Employees.Queries
             proList.Add(Projections.GroupProperty("SalaryId.EmpNo"));
             proList.Add(Projections.Property("e.FirstName"));
             proList.Add(Projections.Property("e.LastName"));
-            c.Add(Restrictions.Le("Zalary", 80000));
+            c.Add(Restrictions.Le("Zalary", 70000));
+            c.Add(Restrictions.Eq("dp.DeptName", "Research"));
             c.SetProjection(proList);
-            c.SetMaxResults(100);
+            //c.SetMaxResults(2000);
             var results = c.List();
             foreach (object[] result in results)
             {
@@ -33,6 +36,7 @@ namespace Employees.Queries
                 string lastName = (string)result[3];
                 Console.WriteLine("Employee: " + firstName + " " + lastName + " Salary: " + salary);
             }
+            Console.WriteLine("Results size: " + results.Count);
         }
     }
 }

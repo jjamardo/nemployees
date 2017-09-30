@@ -9,19 +9,19 @@
     <property name="Gender" type="string" column="gender" />
     <property name="BirthDate" type="date" column="birth_date" />
     <property name="HireDate" type="date" column="hire_date" />
-    <set name="DeptEmps" table="dept_emp" fetch="join">
+    <set name="DeptEmps" table="dept_emp" fetch="select" lazy="true">
       <key column="emp_no" />
       <one-to-many class="DeptEmp" />
     </set>
-    <set name="Salaries" table="salaries" fetch="join">
+    <set name="Salaries" table="salaries" fetch="select" lazy="true">
       <key column="emp_no" />
       <one-to-many class="Salary" />
     </set>
-    <set name="Titles" table="titles" fetch="join">
+    <set name="Titles" table="titles" fetch="select" lazy="true">
       <key column="emp_no" />
       <one-to-many class="Title" />
     </set>
-    <set name="DeptManagers" table="dept_manager" fetch="join">
+    <set name="DeptManagers" table="dept_manager" fetch="select" lazy="true">
       <key column="emp_no" />
       <one-to-many class="DeptManager" />
     </set>
@@ -32,11 +32,11 @@
     <id name="DeptNo" type="string" column="dept_no">
     </id>
     <property name="DeptName" type="string" column="dept_name" />
-    <set name="DeptEmps" table="dept_emp" fetch="join">
+    <set name="DeptEmps" table="dept_emp" fetch="select" lazy="true">
       <key column="dept_no" />
       <one-to-many class="DeptEmp" />
     </set>
-    <set name="DeptManagers" table="dept_emp" fetch="join">
+    <set name="DeptManagers" table="dept_emp" fetch="select" lazy="true">
       <key column="dept_no" />
       <one-to-many class="DeptManager" />
     </set>
